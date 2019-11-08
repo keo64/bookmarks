@@ -1,29 +1,40 @@
-<p id="notice"><%= notice %></p>
+<% unless current_user %> 
+  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+<% else %>
+  <%= current_user[:name] %>
 
-<h1>Bookmarks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <p id="notice"><%= notice %></p>
 
-  <tbody>
-    <% @bookmarks.each do |bookmark| %>
+  <h1>Bookmarks</h1>
+
+  <table>
+    <thead>
       <tr>
-        <td><%= bookmark.name %></td>
-        <td><%= bookmark.url %></td>
-        <td><%= link_to 'Show', bookmark %></td>
-        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
-        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Url</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @bookmarks.each do |bookmark| %>
+        <tr>
+          <td><%= bookmark.name %></td>
+          <td><%= bookmark.url %></td>
+          <td><%= link_to 'Show', bookmark %></td>
+          <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
+          <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Bookmark', new_bookmark_path %>
+  <br>
+
+  <%= link_to 'New Bookmark', new_bookmark_path %>
+
+
+  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+<% end %>
+
