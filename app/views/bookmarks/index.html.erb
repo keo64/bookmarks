@@ -32,6 +32,24 @@
 
   <br>
 
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @friends.each do |friend| %>
+        <tr>
+          <td><%= link_to friend.name, friend %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
   <%= link_to 'New Bookmark', new_bookmark_path %>
 
 

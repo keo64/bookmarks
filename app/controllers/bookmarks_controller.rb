@@ -4,19 +4,13 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.json
   def index
+    @bookmarks = []
+    @friends = []
+
     if current_user.present?
-      p '11111111'
-      # 8af7265ce3ec7a881ea73753addd5a94
-      @friends   = Facebook.get_friends(current_user.token)
-      p @friends
-
-
-      # p @books = Facebook.get_object(current_user.token, '/me/books?fields=name,picture,written_by')
-
-      p '11111111'
+      @friends = Facebook.get_friends(current_user.token)
+      @bookmarks = current_user.bookmarks
     end
-
-    @bookmarks = Bookmark.all
   end
 
   # GET /bookmarks/1
