@@ -2,13 +2,17 @@ class Users::FriendsController < ApplicationController
   before_action :set_user, only: [:show]
 
   def show
-    @bookmarks = []
-    @friends = []
+    # @bookmarks = []
+    # @friends = []
 
-    if @user.present?
-      @friends = Facebook.get_friends(@user.token)
+    # p '111111'
+
+    # if @user.present?
+      # p '111111'
+      # p @user
+      # @friends = Facebook.get_friends(@user.token)
       @bookmarks = @user.bookmarks
-    end
+    # end
   end
 
   private
